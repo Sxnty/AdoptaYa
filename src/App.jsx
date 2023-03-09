@@ -3,13 +3,15 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-
+import { AnimalProvider } from "./context/Animals";
 function App() {
   return (
     <>
-      <Navbar />
-      <Home />
-      <Footer/>
+      <AnimalProvider>
+        <Navbar />
+        <Home />
+        <Footer />
+      </AnimalProvider>
     </>
   );
 }
