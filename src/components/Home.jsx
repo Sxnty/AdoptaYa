@@ -5,14 +5,51 @@ import "../styles/home.scss";
 import ShelterCard from "./ShelterCard";
 import { AnimalsContext } from "../context/Animals";
 import AnimalList from "./AnimalList";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 function Home() {
-  const [dataFiltered, setDataFiltered] = useState([]);
   const { animals } = useContext(AnimalsContext);
-  const filterAnimals = (animalType) => {
-    const newData = animals.filter((e) => e.animal === animalType);
-    setDataFiltered([...dataFiltered, ...newData]);
+  const [dataFiltered, setDataFiltered] = useState([]);
+  const [fullData, setFullData] = useState([]);
+  const [isChecked, setIsChecked] = useState({ name: "", checked: false });
+
+  useEffect(() => {
+    setDataFiltered(animals);
+    setFullData(animals);
+  }, [animals]);
+
+  const nameFilter = (e) => {
+    let animalName = e.target.value;
+
+    if(!animalName.length && isChecked.checked) {
+      // dame todo, filtrado por el tipo.
+      console.log('Todo, filtrado por tipo');
+      console.log(isChecked.name, 'type')
+      typeFilter(isChecked.checked,isChecked.name);
+    } else if (!animalName.length && !isChecked.checked) {
+      console.log('Todo, sin filtado por tipo');
+      setDataFiltered(fullData);
+    } else {
+      let dataFiltrada = dataFiltered.filter(data => data.name.toLowerCase().includes(animalName.toLowerCase()));
+      console.log(dataFiltrada, 'data Filtrada');
+      if(dataFiltrada.length) {
+        setDataFiltered(dataFiltrada);
+      }
+    }
+  };
+
+  const typeFilter = (checked,animalType) => {
+    if(checked) {
+      let dataFiltrada = fullData.filter(
+        (data) => data.animal.toLowerCase() === animalType.toLowerCase()
+      );
+      setIsChecked({ name: animalType, checked: true });
+      setDataFiltered(dataFiltrada);
+    } else {
+      // quitar filtro
+      setDataFiltered(fullData);
+    }
+   
   };
 
   return (
@@ -20,32 +57,46 @@ function Home() {
       <main className="hero">
         <h1>Buscar una mascota.</h1>
         <form className="hero__form">
-          <input type="text" placeholder="Buscar" />
+          <input type="text" placeholder="Buscar" onChange={nameFilter} />
           <div className="form__filters">
-            <div className="filter__dog">
-              <TbDog
-                onClick={() => {
-                  filterAnimals("dog");
+            <label className="filter__checkbox">
+              <input
+                type="checkbox"
+                className="checkbox__input"
+                onClick={(e) => {
+                  typeFilter(e.target.checked,"dog");
                 }}
               />
-              <p>Perros</p>
-            </div>
-            <div className="filter__cats">
-              <TbCat
-                onClick={() => {
-                  filterAnimals("cat");
-                }}
-              />
-              <p>Gatos</p>
-            </div>
-            <div className="filter__birds">
-              <GiHummingbird />
-              <p>Aves</p>
-            </div>
-            <div className="filter__others">
-              <TbGridDots />
-              <p>Otros</p>
-            </div>
+              <span className="checkbox__icon">
+                <TbDog />
+                Perros
+              </span>
+            </label>
+            <label className="filter__checkbox">
+              <input type="checkbox" className="checkbox__input" onClick={(e) => {
+                  typeFilter(e.target.checked,"cat");
+                }}/>
+              <span className="checkbox__icon">
+                <TbCat />
+                Gatos
+              </span>
+            </label>
+            <label className="filter__checkbox">
+              <input type="checkbox" className="checkbox__input" onClick={(e) => {
+                  typeFilter(e.target.checked,"bird");
+                }}/>
+              <span className="checkbox__icon">
+                <GiHummingbird />
+                Aves
+              </span>
+            </label>
+            <label className="filter__checkbox">
+              <input type="checkbox" className="checkbox__input" />
+              <span className="checkbox__icon">
+                <TbGridDots />
+                Otros
+              </span>
+            </label>
           </div>
         </form>
         {dataFiltered.length === 0 ? (
@@ -54,7 +105,7 @@ function Home() {
             <ShelterCard />
           </section>
         ) : (
-          <AnimalList animals={dataFiltered}/>
+          <AnimalList animals={dataFiltered} />
         )}
       </main>
     </>

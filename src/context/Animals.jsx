@@ -7,7 +7,7 @@ export const AnimalProvider = ({ children }) => {
   useEffect(() => {
     const data = [
       {
-        name: "toby",
+        name: "ted",
         animal: "dog",
         img: "https://cdn.discordapp.com/attachments/576208504226971648/1083411415781625947/english-dog-breeds-4788340-hero-14a64cf053ca40f78e5bd078b052d97f.png",
         shelter: "Nombre del refugio",

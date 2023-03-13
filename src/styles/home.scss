@@ -21,6 +21,42 @@
       }
     }
     .form__filters {
+      width: 100%;
+      .filter__checkbox {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        .checkbox__input {
+          display: none;
+        }
+        .checkbox__icon {
+          background-color: #e6e6e6;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem 1.5rem;
+          border-radius: 1rem;
+          cursor: pointer;
+          font-family: "Montserrat", sans-serif;
+          font-weight: bolder;
+          font-size: 0.8rem;
+          svg {
+            font-size: 2rem;
+            color: #1a1a1a; /* Cambie el color del icono aquí */
+          }
+        }
+
+        .checkbox__input:checked + .checkbox__icon {
+          transition: all 250ms;
+          color: white;
+          background-color: #e97777;
+
+          svg {
+            color: #fff; /* Cambie el color del icono aquí */
+          }
+        }
+      }
       margin: 2rem 0 1rem 0;
       display: flex;
       gap: 1rem;
@@ -42,10 +78,9 @@
         p {
           font-family: "Montserrat", sans-serif;
           font-weight: bolder;
-          font-size: .8rem;
+          font-size: 0.8rem;
         }
       }
-
     }
   }
 }
