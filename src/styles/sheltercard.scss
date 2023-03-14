@@ -4,6 +4,20 @@
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  .shelter__title {
+    color: #1b1b1bfe;
+    margin: 0.5rem 1rem;
+    span {
+      color: #ff4141;
+    }
+    h2 {
+      font-family: "Montserrat", sans-serif;
+    }
+    p {
+      font-family: "Roboto", sans-serif;
+      font-size: 1rem;
+    }
+  }
   .shelter__card {
     display: flex;
     justify-content: center;
