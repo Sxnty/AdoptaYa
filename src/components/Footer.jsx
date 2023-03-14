@@ -1,15 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { AiOutlineHome, AiOutlineMessage } from "react-icons/ai";
-import { IoNotificationsOutline, IoPersonOutline } from "react-icons/io5";
+import { IoPersonOutline } from "react-icons/io5";
+import { MdOutlineVerified } from "react-icons/md";
+
 import "../styles/footer.scss";
 
 function Footer() {
   return (
     <footer className="footer">
-      <AiOutlineHome className="active" />
-      <AiOutlineMessage />
-      <IoNotificationsOutline />
-      <IoPersonOutline />
+      <Link to="/">
+        <AiOutlineHome className="active" />
+      </Link>
+      <Link to="/shelters">
+        <MdOutlineVerified />
+      </Link>
+      <Link>
+        <AiOutlineMessage />
+      </Link>
+      <Link>
+        <IoPersonOutline />
+      </Link>
     </footer>
   );
 }

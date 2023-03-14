@@ -2,7 +2,7 @@ import React from "react";
 import { TbDog, TbCat, TbGridDots } from "react-icons/tb";
 import { GiHummingbird } from "react-icons/gi";
 import "../styles/home.scss";
-import ShelterCard from "./ShelterCard";
+import Shelters from "./Shelters";
 import { AnimalsContext } from "../context/Animals";
 import AnimalList from "./AnimalList";
 import { useState, useContext, useEffect } from "react";
@@ -108,14 +108,7 @@ function Home() {
             </label>
           </div>
         </form>
-        {dataFiltered.length === 0 ? (
-          <section className="shelters">
-            <ShelterCard />
-            <ShelterCard />
-          </section>
-        ) : (
           <AnimalList animals={dataFiltered} />
-        )}
       </main>
     </>
   );

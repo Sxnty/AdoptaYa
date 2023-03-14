@@ -9,14 +9,14 @@
     align-items: center;
     background-color: #f0f0f0;
     border-radius: 1rem;
-    >svg {
+    >a {
         font-size: 2rem;
         color: #1a1a1a;
     }
     .active {
         color: white;
+        width: 200%;
         border-radius: 1rem;
         background-color: #e97777;
-        width: 80%;
     }
 }
