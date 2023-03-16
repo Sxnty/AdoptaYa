@@ -11,7 +11,6 @@ function Shelters() {
         </div>
         <ShelterCard />
         <ShelterCard />
-        <ShelterCard />
       </section>
     </>
   );
