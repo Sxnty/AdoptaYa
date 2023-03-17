@@ -15,13 +15,17 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <AnimalProvider>
-            <Navbar />
+            <Routes>
+              <Route path="/login" element={<Login />} />
+            </Routes>
             <Routes>
               <Route
                 path="/"
                 element={
                   <Auth>
+                    <Navbar />
                     <Home />
+                    <Footer />
                   </Auth>
                 }
               />
@@ -29,13 +33,13 @@ function App() {
                 path="/shelters"
                 element={
                   <Auth>
+                    <Navbar />
                     <Shelters />
+                    <Footer />
                   </Auth>
                 }
               />
-              <Route path="/login" element={<Login />} />
             </Routes>
-            <Footer />
           </AnimalProvider>
         </AuthProvider>
       </BrowserRouter>
